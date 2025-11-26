@@ -1,3 +1,4 @@
+# Edited by Rui, 2025/10/31
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 """
@@ -21,7 +22,8 @@ def _compile(self, obj, src, ext, cc_args, extra_postargs, pp_opts):
     compiler_so = self.compiler_so
     arch = platform.architecture()[0].lower()
     if (ext == ".f" or ext == ".f90"):
-        if sys.platform == 'darwin' or sys.platform.startswith('linux'):
+        # if sys.platform == 'darwin' or sys.platform.startswith('linux'): # by Rui, 2025/10/31
+        if sys.platform in ['darwin', 'win64'] or sys.platform.startswith('linux'): # by Rui, 2025/10/31
             compiler_so = ["gfortran"]
             if (ext == ".f90"):
                 cc_args = ["-O3", "-fPIC", "-c", "-ffree-form", "-ffree-line-length-none"]
